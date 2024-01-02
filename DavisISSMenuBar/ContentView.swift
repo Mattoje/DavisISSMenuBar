@@ -15,6 +15,7 @@ struct ContentView: View {
     @AppStorage("stationId") var stationId = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
+    @AppStorage("connOnStartup") var connOnStartup = false
     var body: some View {
         VStack {
             Image(systemName: "cloud.sun")
@@ -24,7 +25,8 @@ struct ContentView: View {
             TextField("Station ID", text: $stationId)
             TextField("Station Api Key", text: $stationApiKey)
             TextField("Station Api Secret", text: $stationApiSecret)
-            Button("Connect"){
+            Button(isConnected ?  "Disconnect":"Connect"){
+                
                 if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
                 Task.init{
                     let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
@@ -63,4 +65,7 @@ struct ContentView: View {
 }
 #Preview {
     ContentView(externalTemp: .constant(0), isConnected: .constant(false))
+}
+#Preview {
+    ContentView(externalTemp: .constant(0), isConnected: .constant(true))
 }

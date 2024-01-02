@@ -5,7 +5,7 @@
 # this thing is only an exercise in learning swift/swiftUI 
 # so use it at your own risk!!
 <p align="center">
-    <img src="https://img.shields.io/badge/macOS-14.1-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/macOS-14.2-brightgreen.svg" />
     <img src="https://img.shields.io/badge/Xcode-15.1-brightgreen.svg" />
     <img src="https://img.shields.io/badge/Swift-5.9.2-brightgreen.svg" />
 </p>

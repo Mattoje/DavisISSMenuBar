@@ -11,7 +11,7 @@ func getDataFromMyWeatherlink(_ stationId: String,_ stationApiKey:String,_ stati
     do {
         let (data,response) = try await URLSession.shared.data(for: request)
         guard let response = response as? HTTPURLResponse else {
-            return (Data("Guard response fallita".utf8),false)
+            return (Data("Guard response failed".utf8),false)
         }
         if response.statusCode==401 {
             return (Data("Error 401".utf8),false)
