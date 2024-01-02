@@ -30,6 +30,7 @@
 		956899502B4471CC00B8DC5C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		956899532B447DEE00B8DC5C /* Sensors.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Sensors.md; sourceTree = "<group>"; };
 		956899542B44826D00B8DC5C /* License.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
+		9572E75D2B448DD200320BFA /* notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = notes.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				956899532B447DEE00B8DC5C /* Sensors.md */,
+				9572E75D2B448DD200320BFA /* notes.md */,
 			);
 			path = Docs;
 			sourceTree = "<group>";

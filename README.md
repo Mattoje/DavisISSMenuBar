@@ -1,5 +1,5 @@
-# A swiftUI MenuBar app to show Temp from an owned Davis Vantage Pro 2 Wireless 
-# using Weatherlink v2 API
+# A swiftUI MenuBar app to show Temp from an owned 
+# Davis Vantage Pro 2 Wireless using Weatherlink v2 API
 
 # BIG FAT WARNING:
 # this thing is only an exercise in learning swift/swiftUI 
