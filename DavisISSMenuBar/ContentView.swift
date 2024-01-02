@@ -6,10 +6,12 @@ import SwiftUI
 import Foundation
 
 struct ContentView: View {
+    
+    let myISSid=43 //Vantage Pro2 Wireless
+    
     @Binding var externalTemp:Double
     @Binding var isConnected:Bool
     @State private var connStatus:String="Disconnected"
-    let myISSid=43 //Vantage Pro2 Wireless
     @AppStorage("stationId") var stationId = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
@@ -18,11 +20,12 @@ struct ContentView: View {
             Image(systemName: "cloud.sun")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Connection Status: \(connStatus)")
+            Text("\(connStatus)")
             TextField("Station ID", text: $stationId)
             TextField("Station Api Key", text: $stationApiKey)
             TextField("Station Api Secret", text: $stationApiSecret)
             Button("Connect"){
+                if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
                 Task.init{
                     let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
                     if cstatus{
@@ -31,7 +34,10 @@ struct ContentView: View {
                             let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
                             externalTemp=celsiusTemp
                             isConnected=true
-                            connStatus="Connected"
+                            let formatter = DateFormatter()
+                            formatter.dateStyle = .medium
+                            formatter.timeStyle = .short
+                            connStatus="Connected: "+formatter.string(from: Date())
                         } else {
                             isConnected=false
                             connStatus="No Sensors Detected"
@@ -42,6 +48,11 @@ struct ContentView: View {
                         print("Error:",String(decoding: jsondata, as: UTF8.self))
                     }
                 }
+            }
+                else {
+                    connStatus="Fill all the required fields"
+                }
+                    
             }
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
