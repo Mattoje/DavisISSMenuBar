@@ -47,9 +47,10 @@
 		9521F45E2B3F50570002CED3 = {
 			isa = PBXGroup;
 			children = (
+				956899532B447DEE00B8DC5C /* Sensors.md */,
+				9572E75D2B448DD200320BFA /* notes.md */,
 				9521F4792B3F56A70002CED3 /* README.md */,
 				956899542B44826D00B8DC5C /* License.md */,
-				956899522B447DD600B8DC5C /* Docs */,
 				9521F4692B3F50570002CED3 /* DavisISSMenuBar */,
 				9521F4682B3F50570002CED3 /* Products */,
 			);
@@ -84,15 +85,6 @@
 				9521F4712B3F50590002CED3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		956899522B447DD600B8DC5C /* Docs */ = {
-			isa = PBXGroup;
-			children = (
-				956899532B447DEE00B8DC5C /* Sensors.md */,
-				9572E75D2B448DD200320BFA /* notes.md */,
-			);
-			path = Docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
