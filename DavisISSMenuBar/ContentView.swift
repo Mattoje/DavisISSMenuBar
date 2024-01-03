@@ -33,18 +33,23 @@ struct ContentView: View {
                 Task.init{
                     let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
                     if cstatus{
-                        let sensorsList = try? JSONDecoder().decode(Sensors.self, from: jsondata)
-                        if let tempSensor = sensorsList!.sensors.first(where: {$0.sensorType == myISSid}) {
-                            let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
-                            externalTemp=celsiusTemp
-                            isConnected=true
-                            let formatter = DateFormatter()
-                            formatter.dateStyle = .medium
-                            formatter.timeStyle = .short
-                            connStatus="Connected: "+formatter.string(from: Date())
-                        } else {
+                        if let sensorsList = try? JSONDecoder().decode(Sensors.self, from: jsondata) {
+                            if let tempSensor = sensorsList.sensors.first(where: {$0.sensorType == myISSid}) {
+                                let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
+                                externalTemp=celsiusTemp
+                                isConnected=true
+                                let formatter = DateFormatter()
+                                formatter.dateStyle = .medium
+                                formatter.timeStyle = .short
+                                connStatus="Connected: "+formatter.string(from: Date())
+                            } else {
+                                isConnected=false
+                                connStatus="No Sensors Detected"
+                            }
+                        }
+                        else {
                             isConnected=false
-                            connStatus="No Sensors Detected"
+                            connStatus="Json Decoding Error"
                         }
                     } else {
                         isConnected=false

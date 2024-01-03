@@ -4,7 +4,6 @@
 // Copyright (C) 2023  Mattoje
 //
 
-import SwiftUI
 import Foundation
 // MARK: - Sensors
 struct Sensors: Codable {
