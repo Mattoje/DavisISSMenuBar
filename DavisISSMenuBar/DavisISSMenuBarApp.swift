@@ -11,12 +11,13 @@ import SwiftUI
 struct DavisISSMenuBarApp: App {
     @State var externalTemp:Double=0
     @State var isConnected: Bool=false
+    @State var connStatus:String="Disconnected"
     var body: some Scene {
         MenuBarExtra {
-            ContentView(externalTemp: $externalTemp,isConnected: $isConnected)
+            ContentView(externalTemp: $externalTemp,isConnected: $isConnected,connStatus:$connStatus)
         }
     label: {
-        MenuBarView(externalTemp: externalTemp,isConnected: isConnected)
+        MenuBarView(externalTemp: $externalTemp,isConnected: $isConnected,connStatus:$connStatus)
     }
     .menuBarExtraStyle(.window)
     }

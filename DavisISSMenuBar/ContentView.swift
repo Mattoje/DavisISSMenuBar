@@ -8,12 +8,9 @@ import SwiftUI
 import Foundation
 
 struct ContentView: View {
-    
-    let myISSid=43 //Vantage Pro2 Wireless
-    
     @Binding var externalTemp:Double
     @Binding var isConnected:Bool
-    @State private var connStatus:String="Disconnected"
+    @Binding var connStatus:String
     @AppStorage("stationId") var stationId = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
@@ -24,44 +21,19 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("\(connStatus)")
+            Text(connOnStartup ? "Autoconnect":"No autoconnect")
             TextField("Station ID", text: $stationId)
             TextField("Station Api Key", text: $stationApiKey)
             TextField("Station Api Secret", text: $stationApiSecret)
             Button(isConnected ?  "Disconnect":"Connect"){
-                
-                if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
-                Task.init{
-                    let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
-                    if cstatus{
-                        if let sensorsList = try? JSONDecoder().decode(Sensors.self, from: jsondata) {
-                            if let tempSensor = sensorsList.sensors.first(where: {$0.sensorType == myISSid}) {
-                                let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
-                                externalTemp=celsiusTemp
-                                isConnected=true
-                                let formatter = DateFormatter()
-                                formatter.dateStyle = .medium
-                                formatter.timeStyle = .short
-                                connStatus="Connected: "+formatter.string(from: Date())
-                            } else {
-                                isConnected=false
-                                connStatus="No Sensors Detected"
-                            }
-                        }
-                        else {
-                            isConnected=false
-                            connStatus="Json Decoding Error"
-                        }
-                    } else {
-                        isConnected=false
-                        connStatus=String(decoding: jsondata, as: UTF8.self)
-                        print("Error:",String(decoding: jsondata, as: UTF8.self))
-                    }
+                if (!isConnected) {
+                    startupconn()
                 }
-            }
                 else {
-                    connStatus="Fill all the required fields"
+                    isConnected=false
+                    connOnStartup=false
+                    connStatus="Disconnected by user"
                 }
-                    
             }
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
@@ -69,10 +41,44 @@ struct ContentView: View {
         }
         .padding()
     }
+    func startupconn(){
+        if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
+            Task.init{
+                let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
+                if cstatus{
+                    if let sensorsList = try? JSONDecoder().decode(Sensors.self, from: jsondata) {
+                        if let tempSensor = sensorsList.sensors.first(where: {$0.sensorType == myISSid}) {
+                            let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
+                            externalTemp=celsiusTemp
+                            isConnected=true
+                            connOnStartup = true
+                            let formatter = DateFormatter()
+                            formatter.dateStyle = .medium
+                            formatter.timeStyle = .long
+                            connStatus="Connected: "+formatter.string(from: Date())
+                        } else {
+                            isConnected=false
+                            connStatus="No Sensors Detected"
+                        }
+                    }
+                    else {
+                        isConnected=false
+                        connStatus="Json Decoding Error"
+                    }
+                } else {
+                    isConnected=false
+                    connStatus=String(decoding: jsondata, as: UTF8.self)
+                }
+            }
+        }
+        else {
+            connStatus="Fill all the required fields"
+        }
+    }
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), isConnected: .constant(false))
+    ContentView(externalTemp: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"))
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), isConnected: .constant(true))
+    ContentView(externalTemp: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"))
 }

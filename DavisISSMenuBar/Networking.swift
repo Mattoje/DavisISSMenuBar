@@ -5,6 +5,7 @@
 //
 
 import Foundation
+let myISSid=43 //Vantage Pro2 Wireless
 
 func getDataFromMyWeatherlink(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:String) async -> (responseJson: Data,status: Bool) {
     let url = URL(string: "https://api.weatherlink.com/v2/current/\(stationId)?api-key=\(stationApiKey)")!
