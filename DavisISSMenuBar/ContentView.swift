@@ -46,8 +46,8 @@ struct ContentView: View {
             Task.init{
                 let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
                 if cstatus{
-                    if let sensorsList = try? JSONDecoder().decode(Sensors.self, from: jsondata) {
-                        if let tempSensor = sensorsList.sensors.first(where: {$0.sensorType == myISSid}) {
+                    if let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) {
+                        if let tempSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) {
                             let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
                             externalTemp=celsiusTemp
                             isConnected=true
