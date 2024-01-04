@@ -5,7 +5,7 @@
 //
 
 import Foundation
-// MARK: - Sensors
+// MARK: - WeatherLinkResults
 struct WeatherLinkResults: Codable {
     let station_id_uuid: String
     let sensors: [Sensor]

@@ -26,50 +26,19 @@ struct MenuBarView: View {
             
         }.onReceive(timer) {_ in
             if (connOnStartup){
-                startupconn()
+                Task.init{
+                    (externalTemp,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                }
             }
         }
         .onAppear(){
             if (connOnStartup){
-                startupconn()
-            }
-        }
-    }
-    func startupconn(){
-        if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
-            Task.init{
-                let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
-                if cstatus{
-                    if let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) {
-                        if let tempSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) {
-                            let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
-                            externalTemp=celsiusTemp
-                            isConnected=true
-                            connOnStartup = true
-                            let formatter = DateFormatter()
-                            formatter.dateStyle = .medium
-                            formatter.timeStyle = .long
-                            connStatus="Connected: "+formatter.string(from: Date())
-                        } else {
-                            isConnected=false
-                            connStatus="No Sensors Detected"
-                        }
-                    }
-                    else {
-                        isConnected=false
-                        connStatus="Json Decoding Error"
-                    }
-                } else {
-                    isConnected=false
-                    connStatus=String(decoding: jsondata, as: UTF8.self)
+                Task.init{
+                    (externalTemp,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
                 }
             }
         }
-        else {
-            connStatus="Fill all the required fields"
-        }
     }
-    
 }
 
 #Preview {

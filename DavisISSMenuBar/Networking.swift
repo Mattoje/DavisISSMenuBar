@@ -31,3 +31,29 @@ func getDataFromMyWeatherlink(_ stationId: String,_ stationApiKey:String,_ stati
         return (Data("Unknown Error".utf8),false)
     }
 }
+func startupconn(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){
+    if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
+            let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
+            if cstatus{
+                if let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) {
+                    if let tempSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) {
+                        let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
+                        let formatter = DateFormatter()
+                        formatter.dateStyle = .medium
+                        formatter.timeStyle = .long
+                        return (celsiusTemp,true,true,"Connected: "+formatter.string(from: Date()))
+                    } else {
+                        return (-235,false,false,"No Sensors Detected")
+                    }
+                }
+                else {
+                    return (-235,false,false,"Json Decoding Error")
+                }
+            } else {
+                return (-235,false,false,"Json Decoding Error unknown")
+            }
+    }
+    else {
+        return (-235,false,false,"Fill all the required fields")
+    }
+}
