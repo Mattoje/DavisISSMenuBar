@@ -37,11 +37,15 @@ func startupconn(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:S
             if cstatus{
                 if let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) {
                     if let tempSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) {
-                        let celsiusTemp = (tempSensor.data[0].temp! - 32) * 5/9
-                        let formatter = DateFormatter()
-                        formatter.dateStyle = .medium
-                        formatter.timeStyle = .long
-                        return (celsiusTemp,true,true,"Connected: "+formatter.string(from: Date()))
+                        if let temp  = tempSensor.data[0].temp {
+                            let formatter = DateFormatter()
+                            formatter.dateStyle = .medium
+                            formatter.timeStyle = .long
+                            return ((temp - 32) * 5/9,true,true,"Connected: "+formatter.string(from: Date()))
+                        }
+                        else {
+                            return (-235,false,false,"Temp Sensor Malfunction")
+                        }
                     } else {
                         return (-235,false,false,"No Sensors Detected")
                     }
