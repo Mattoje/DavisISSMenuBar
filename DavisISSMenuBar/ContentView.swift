@@ -11,6 +11,7 @@ struct ContentView: View {
     @Binding var externalTemp:Double
     @Binding var isConnected:Bool
     @Binding var connStatus:String
+    @Binding var networkLocked:Bool
     @AppStorage("stationId") var stationId = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
@@ -26,10 +27,12 @@ struct ContentView: View {
             TextField("Station Api Key", text: $stationApiKey)
             TextField("Station Api Secret", text: $stationApiSecret)
             Button(isConnected ?  "Disconnect":"Connect"){
-                if (!isConnected) {
+                if (!isConnected && !networkLocked) {
+                    networkLocked=true
                     Task.init{
                         (externalTemp,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
                     }
+                    networkLocked=false
                 }
                 else {
                     isConnected=false
@@ -45,8 +48,8 @@ struct ContentView: View {
     }
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"))
+    ContentView(externalTemp: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"))
+    ContentView(externalTemp: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
 }

@@ -5,5 +5,5 @@ Images in Menubar cannot be resized nor changed background ATM
 better appicon
 about screen
 some kind of forecast
-stronger networking code
+rain indicator
 who knows
