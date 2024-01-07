@@ -17,6 +17,7 @@ details here:
 Davis API: https://weatherlink.github.io/v2-api/
 
 kudos to: https://app.quicktype.io for (almost) avoiding me the hassle of manually parse JSON into swift struct
+kudos also to: https://jsonlint.com
 
 
 Conditions:

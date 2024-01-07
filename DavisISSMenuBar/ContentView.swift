@@ -20,15 +20,20 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack{
-                Image(systemName: "cloud.sun")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
+                
                 if (!isConnected){
+                    Image(systemName: "thermometer.medium.slash")
                     Circle()
                         .frame(width: 5,height: 5)
                         .foregroundColor(.gray)
                 } else{
-                    
+                    if (rainRate==0){
+                        Image(systemName: "cloud.sun")
+                    }
+                    else {
+                        Image(systemName: "cloud.drizzle")
+                        Text("\(rainRate, specifier: "%.1f") mm ")
+                    }
                     Circle()
                         .frame(width: 5,height: 5)
                         .foregroundColor(networkLocked ?.orange : .green)
@@ -68,4 +73,7 @@ struct ContentView: View {
 }
 #Preview {
     ContentView(externalTemp: .constant(0), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
+}
+#Preview {
+    ContentView(externalTemp: .constant(0), rainRate: .constant(20), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
 }

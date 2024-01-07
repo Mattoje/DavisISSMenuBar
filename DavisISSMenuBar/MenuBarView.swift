@@ -46,7 +46,8 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    //(externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    print("Ciupa")
                 }
                 networkLocked=false
             }
@@ -55,7 +56,8 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    // (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    print("Ciupappear")
                 }
                 networkLocked=false
             }

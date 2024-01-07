@@ -40,7 +40,7 @@ func startupconn(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:S
                     if let temp  = tempSensor.data[0].temp {
                         let formatter = DateFormatter()
                         formatter.dateStyle = .medium
-                        formatter.timeStyle = .long
+                        formatter.timeStyle = .short
                         if let rainRate = tempSensor.data[0].rain_rate_last_mm{
                             return ((temp - 32) * 5/9,rainRate,true,true,"Connected: "+formatter.string(from: Date()))
                         }
@@ -51,7 +51,8 @@ func startupconn(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:S
                     else {
                         return (-235,0,false,false,"Temp Sensor Malfunction")
                     }
-                } else {
+                }
+                else {
                     return (-235,0,false,false,"No Sensors Detected")
                 }
             }
