@@ -7,3 +7,4 @@
 * about screen
 * some kind of forecast
 * who knows
+* maybe (partially)get rid of AppStorage and using something more secure (keychain, swiftdata ??)
