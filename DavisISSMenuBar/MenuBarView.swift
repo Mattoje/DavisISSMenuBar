@@ -14,22 +14,39 @@ struct MenuBarView: View {
     @AppStorage("stationApiSecret") var stationApiSecret = ""
     @AppStorage("connOnStartup") var connOnStartup = false
     @Binding var externalTemp:Double
+    @Binding var rainRate:Double
     @Binding var isConnected:Bool
     @Binding var connStatus:String
     @Binding var networkLocked:Bool
     var body: some View {
-        HStack(alignment: .center){
-            if isConnected==true{
-                Text("\(externalTemp, specifier: "%.1f")°")
-            } else{
-                Image(systemName: "thermometer.medium.slash").resizable()
+        HStack(alignment: .bottom){
+            ZStack(alignment: .bottomTrailing){
+                if isConnected==true{
+                    
+                    Text("\(externalTemp, specifier: "%.1f")°")
+                    Divider()
+                    if (rainRate>0){
+                        Image(systemName: "cloud.drizzle").resizable()
+                            .frame(width: 5,height: 5)
+                    }
+                    
+                } else{
+                    
+                    Image(systemName: "thermometer.medium.slash").resizable()
+                    
+                }
+                Circle()
+                    .frame(width: 5,height: 5)
+                    .foregroundColor(networkLocked ?.orange : .green)
             }
             
+            
         }.onReceive(timer) {_ in
+            
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
                 }
                 networkLocked=false
             }
@@ -38,7 +55,7 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
                 }
                 networkLocked=false
             }
@@ -47,8 +64,11 @@ struct MenuBarView: View {
 }
 
 #Preview {
-    MenuBarView(externalTemp: .constant(100), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+    MenuBarView(externalTemp: .constant(20), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
 }
 #Preview {
-    MenuBarView(externalTemp: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
+    MenuBarView(externalTemp: .constant(100), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+}
+#Preview {
+    MenuBarView(externalTemp: .constant(0), rainRate: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
 }

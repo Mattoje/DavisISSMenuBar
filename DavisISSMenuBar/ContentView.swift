@@ -9,6 +9,7 @@ import Foundation
 
 struct ContentView: View {
     @Binding var externalTemp:Double
+    @Binding var rainRate:Double
     @Binding var isConnected:Bool
     @Binding var connStatus:String
     @Binding var networkLocked:Bool
@@ -18,9 +19,21 @@ struct ContentView: View {
     @AppStorage("connOnStartup") var connOnStartup = false
     var body: some View {
         VStack {
-            Image(systemName: "cloud.sun")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
+            HStack{
+                Image(systemName: "cloud.sun")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                if (!isConnected){
+                    Circle()
+                        .frame(width: 5,height: 5)
+                        .foregroundColor(.gray)
+                } else{
+                    
+                    Circle()
+                        .frame(width: 5,height: 5)
+                        .foregroundColor(networkLocked ?.orange : .green)
+                }
+            }
             Text("\(connStatus)")
             Text(connOnStartup ? "Autoconnect":"No autoconnect")
             TextField("Station ID", text: $stationId)
@@ -30,7 +43,7 @@ struct ContentView: View {
                 if (!isConnected && !networkLocked) {
                     networkLocked=true
                     Task.init{
-                        (externalTemp,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                        (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
                     }
                     networkLocked=false
                 }
@@ -48,8 +61,11 @@ struct ContentView: View {
     }
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
+    ContentView(externalTemp: .constant(0), rainRate: .constant(0),isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+    ContentView(externalTemp: .constant(0), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+}
+#Preview {
+    ContentView(externalTemp: .constant(0), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
 }
