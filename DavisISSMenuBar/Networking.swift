@@ -7,8 +7,8 @@
 import Foundation
 let myISSid=43 //Vantage Pro2 Wireless
 
-func getDataFromMyWeatherlink(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:String) async -> (responseJson: Data,status: Bool) {
-    let url = URL(string: "https://api.weatherlink.com/v2/current/\(stationId)?api-key=\(stationApiKey)")!
+func getDataFromMyWeatherlink(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async -> (responseJson: Data,status: Bool) {
+    let url = URL(string: "https://api.weatherlink.com/v2/current/\(stationUUID)?api-key=\(stationApiKey)")!
     var request = URLRequest(url: url)
     request.setValue(stationApiSecret,forHTTPHeaderField:"X-Api-Secret")
     do {
@@ -31,9 +31,9 @@ func getDataFromMyWeatherlink(_ stationId: String,_ stationApiKey:String,_ stati
         return (Data("Unknown Error".utf8),false)
     }
 }
-func startupconn(_ stationId: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,rainRate: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){
-    if (stationId != "" && stationApiKey != "" && stationApiSecret != "" ) {
-        let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationId,stationApiKey,stationApiSecret)
+func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,rainRate: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){
+    if (stationUUID != "" && stationApiKey != "" && stationApiSecret != "" ) {
+        let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationUUID,stationApiKey,stationApiSecret)
         if cstatus{
             if let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) {
                 if let tempSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) {

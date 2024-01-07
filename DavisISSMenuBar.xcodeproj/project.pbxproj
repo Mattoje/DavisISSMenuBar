@@ -29,7 +29,6 @@
 		9525DB492B40416F002D29AB /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		954FF3382B4AA3DF00CEA840 /* RainFallRates.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RainFallRates.md; sourceTree = "<group>"; };
 		9564A0EC2B4B05EE00298F1E /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
-		9564A0ED2B4B08D600298F1E /* get_stat_id.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = get_stat_id.sh; sourceTree = "<group>"; };
 		956899502B4471CC00B8DC5C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		956899532B447DEE00B8DC5C /* Sensors.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Sensors.md; sourceTree = "<group>"; };
 		956899542B44826D00B8DC5C /* License.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
@@ -49,7 +48,6 @@
 		9521F45E2B3F50570002CED3 = {
 			isa = PBXGroup;
 			children = (
-				9564A0ED2B4B08D600298F1E /* get_stat_id.sh */,
 				956899532B447DEE00B8DC5C /* Sensors.md */,
 				954FF3382B4AA3DF00CEA840 /* RainFallRates.md */,
 				9521F4792B3F56A70002CED3 /* README.md */,

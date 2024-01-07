@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     let timer = Timer.publish(every: 900, on: .main, in: .common).autoconnect()
-    @AppStorage("stationId") var stationId = ""
+    @AppStorage("stationUUID") var stationUUID = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
     @AppStorage("connOnStartup") var connOnStartup = false
@@ -46,7 +46,7 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                 }
                 networkLocked=false
             }
@@ -55,7 +55,7 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationId,stationApiKey,stationApiSecret)
+                    (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                 }
                 networkLocked=false
             }
