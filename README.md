@@ -27,7 +27,8 @@ Our second announcement is regarding the Station ID parameter in the URL when yo
 
 Both changes are live now in the WeatherLink v2 API. If you have any questions or issues just post a message in the v2 API chat channel
 
-#Kudos
+
+# Kudos
 
 * https://app.quicktype.io for (almost) avoiding me the hassle of manually parse JSON into swift struct
 * https://jsonlint.com
