@@ -2,23 +2,31 @@
  A swiftUI MenuBar app to show Temp and Rain from an owned Davis Vantage Pro 2 Wireless using Weatherlink v2 API
 
 # BIG FAT WARNING:
-**this thing is only an exercise in learning swift/swiftUI 
-so use it at your own risk!!**
+**this thing is only an exercise in learning swift/swiftUI so use it at your own risk!!**
+
+# Build requirements
+<p align="left">
+    <img src="https://img.shields.io/badge/Xcode-15.1-brightgreen.svg" />
+</p>
 
 # OS requirements
 <p align="left">
     <img src="https://img.shields.io/badge/macOS-14.2-brightgreen.svg" />
-    <img src="https://img.shields.io/badge/Xcode-15.1-brightgreen.svg" />
-    <img src="https://img.shields.io/badge/Swift-5.9.2-brightgreen.svg" />
 </p>
 
-#
-You need to know your own stationUUID, stationApiKey and stationApiSecret
+# Conditions:
+* You own the station under your WeatherLink account.
+* The station must be a Davis Vantage Pro 2  Wireless
+* You need to know your own stationUUID, stationApiKey and stationApiSecret
 
 details here:
 
 * Davis API: https://weatherlink.github.io/v2-api/
 * https://discord.com/channels/882722161641554021/894741305526222849/1113558053380431954
+
+
+
+
 
 # Discord text excerpt
 
@@ -38,6 +46,4 @@ Both changes are live now in the WeatherLink v2 API. If you have any questions o
 * https://markdownlivepreview.com
 
 
-Conditions:
-1) You own the station under your WeatherLink account.
-2) Davis Vantage Pro 2  Wireless
+
