@@ -14,9 +14,8 @@ You need to know your own stationUUID, stationApiKey and stationApiSecret
 
 details here:
 
-Davis API: https://weatherlink.github.io/v2-api/
-and also here:
-https://discord.com/channels/882722161641554021/894741305526222849/1113558053380431954
+* Davis API: https://weatherlink.github.io/v2-api/
+* https://discord.com/channels/882722161641554021/894741305526222849/1113558053380431954
 
 # Discord text excerpt
 
@@ -28,10 +27,10 @@ Our second announcement is regarding the Station ID parameter in the URL when yo
 
 Both changes are live now in the WeatherLink v2 API. If you have any questions or issues just post a message in the v2 API chat channel
 
+#Kudos
 
-
-kudos to: https://app.quicktype.io for (almost) avoiding me the hassle of manually parse JSON into swift struct
-kudos also to: https://jsonlint.com
+* https://app.quicktype.io for (almost) avoiding me the hassle of manually parse JSON into swift struct
+* https://jsonlint.com
 
 
 Conditions:
