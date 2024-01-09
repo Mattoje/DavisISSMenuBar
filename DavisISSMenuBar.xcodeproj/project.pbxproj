@@ -14,6 +14,7 @@
 		9521F47A2B3F56A70002CED3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9521F4792B3F56A70002CED3 /* README.md */; };
 		9521F47C2B3F665D0002CED3 /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9521F47B2B3F665D0002CED3 /* StationModel.swift */; };
 		9525DB4A2B40416F002D29AB /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DB492B40416F002D29AB /* MenuBarView.swift */; };
+		955099D12B4DB75B00323283 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 955099D02B4DB75B00323283 /* Localizable.xcstrings */; };
 		955D88962B4C6AC800F650D9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955D88952B4C6AC800F650D9 /* Constants.swift */; };
 		956899512B4471CC00B8DC5C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956899502B4471CC00B8DC5C /* Networking.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		9521F47B2B3F665D0002CED3 /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		9525DB492B40416F002D29AB /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		954FF3382B4AA3DF00CEA840 /* RainFallRates.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RainFallRates.md; sourceTree = "<group>"; };
+		955099D02B4DB75B00323283 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		955D88952B4C6AC800F650D9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9564A0EC2B4B05EE00298F1E /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
 		956899502B4471CC00B8DC5C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				9521F46A2B3F50570002CED3 /* DavisISSMenuBarApp.swift */,
 				9525DB492B40416F002D29AB /* MenuBarView.swift */,
+				955099D02B4DB75B00323283 /* Localizable.xcstrings */,
 				9521F46C2B3F50570002CED3 /* ContentView.swift */,
 				9521F47B2B3F665D0002CED3 /* StationModel.swift */,
 				956899502B4471CC00B8DC5C /* Networking.swift */,
@@ -120,7 +123,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					9521F4662B3F50570002CED3 = {
 						CreatedOnToolsVersion = 15.1;
@@ -152,6 +155,7 @@
 			files = (
 				9521F47A2B3F56A70002CED3 /* README.md in Resources */,
 				9521F4722B3F50590002CED3 /* Preview Assets.xcassets in Resources */,
+				955099D12B4DB75B00323283 /* Localizable.xcstrings in Resources */,
 				9521F46F2B3F50590002CED3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +213,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -272,6 +277,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -303,6 +309,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DavisISSMenuBar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -330,6 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DavisISSMenuBar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
