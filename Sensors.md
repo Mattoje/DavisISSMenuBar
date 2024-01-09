@@ -48,7 +48,7 @@
 |bar_trend |   float |   inches of mercury|    
 |bar_absolute |   float  |  inches of mercury|    
 |bar_offset |   float  |  inches of mercury|
-|ts |   integer | Unix Timestamp|
+|ts |   integer | Unix timestamp of the data record|
 
 # Inside Temp and Hum: Sensor Type 365
 |**Field Name**|**Data Type**|**Units**|**Description**|
@@ -59,7 +59,7 @@
 |wet_bulb_in  |  float  |  degrees Fahrenheit |   Most recent inside wet buld reading|
 |heat_index_in  |  float |   degrees Fahrenheit  |  Most recent inside heat index reading|
 |wbgt_in  |  float  |  degrees Fahrenheit |   Most recent inside wet bulb globe temperature reading|
-|ts |   integer | |Unix Timestamp|
+|ts |   integer | |Unix timestamp of the data record|
 
 # Vantage Pro2 Wireless: Sensor Type 43
 
@@ -131,7 +131,7 @@
 | heat_index | float | degrees Fahrenheit |
 | wind_chill | float | degrees Fahrenheit |
 | wind_gust_10_min | integer | miles per hour |
-|ts |   integer | Unix Timestamp|
+|ts |   integer | Unix timestamp of the data record|
 |tx_id | integer | the transmitter ID that the outdoor integrated sensor suite is broadcasting on|
 |tz_offset | long | offset in seconds from UTC based on the selected timezone for the station|
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuBarView: View {
-    let timer = Timer.publish(every: 900, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: pollTime, on: .main, in: .common).autoconnect()
     @AppStorage("stationUUID") var stationUUID = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""

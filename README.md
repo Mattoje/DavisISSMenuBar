@@ -6,7 +6,7 @@
 
 # Build requirements
 <p align="left">
-    <img src="https://img.shields.io/badge/Xcode-15.1-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/Xcode-15.2-brightgreen.svg" />
 </p>
 
 # OS requirements
@@ -18,6 +18,7 @@
 * You own the station under your WeatherLink account.
 * The station must be a Davis Vantage Pro 2  Wireless
 * You need to know your own stationUUID, stationApiKey and stationApiSecret
+* Rate limits: https://weatherlink.github.io/v2-api/rate-limits
 
 details here:
 
