@@ -1,39 +1,5 @@
 {
   "sourceLanguage" : "en",
-  "strings" : {
-    "%.1f mm " : {
-
-    },
-    "%.1f°" : {
-      "comment" : "Prova String Catalog"
-    },
-    "%@" : {
-
-    },
-    "Autoconnect" : {
-
-    },
-    "Connect" : {
-
-    },
-    "Disconnect" : {
-
-    },
-    "No autoconnect" : {
-
-    },
-    "Quit" : {
-
-    },
-    "Station Api Key" : {
-
-    },
-    "Station Api Secret" : {
-
-    },
-    "Station UUID" : {
-
-    }
-  },
+  "strings" : {},
   "version" : "1.0"
 }
