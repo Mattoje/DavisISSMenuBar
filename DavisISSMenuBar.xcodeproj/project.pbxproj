@@ -14,9 +14,9 @@
 		9521F47A2B3F56A70002CED3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9521F4792B3F56A70002CED3 /* README.md */; };
 		9521F47C2B3F665D0002CED3 /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9521F47B2B3F665D0002CED3 /* StationModel.swift */; };
 		9525DB4A2B40416F002D29AB /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DB492B40416F002D29AB /* MenuBarView.swift */; };
-		955099D12B4DB75B00323283 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 955099D02B4DB75B00323283 /* Localizable.xcstrings */; };
 		955D88962B4C6AC800F650D9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955D88952B4C6AC800F650D9 /* Constants.swift */; };
 		956899512B4471CC00B8DC5C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956899502B4471CC00B8DC5C /* Networking.swift */; };
+		95A4546B2B53430B00F460F6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 95A4546A2B53430B00F460F6 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,12 +30,12 @@
 		9521F47B2B3F665D0002CED3 /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		9525DB492B40416F002D29AB /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		954FF3382B4AA3DF00CEA840 /* RainFallRates.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RainFallRates.md; sourceTree = "<group>"; };
-		955099D02B4DB75B00323283 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		955D88952B4C6AC800F650D9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9564A0EC2B4B05EE00298F1E /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
 		956899502B4471CC00B8DC5C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		956899532B447DEE00B8DC5C /* Sensors.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Sensors.md; sourceTree = "<group>"; };
 		956899542B44826D00B8DC5C /* License.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
+		95A4546A2B53430B00F460F6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			children = (
 				9521F46A2B3F50570002CED3 /* DavisISSMenuBarApp.swift */,
 				9525DB492B40416F002D29AB /* MenuBarView.swift */,
-				955099D02B4DB75B00323283 /* Localizable.xcstrings */,
+				95A4546A2B53430B00F460F6 /* Localizable.xcstrings */,
 				9521F46C2B3F50570002CED3 /* ContentView.swift */,
 				9521F47B2B3F665D0002CED3 /* StationModel.swift */,
 				956899502B4471CC00B8DC5C /* Networking.swift */,
@@ -155,7 +155,7 @@
 			files = (
 				9521F47A2B3F56A70002CED3 /* README.md in Resources */,
 				9521F4722B3F50590002CED3 /* Preview Assets.xcassets in Resources */,
-				955099D12B4DB75B00323283 /* Localizable.xcstrings in Resources */,
+				95A4546B2B53430B00F460F6 /* Localizable.xcstrings in Resources */,
 				9521F46F2B3F50590002CED3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

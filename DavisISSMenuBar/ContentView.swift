@@ -10,9 +10,11 @@ import Foundation
 struct ContentView: View {
     @Binding var externalTemp:Double
     @Binding var rainRate:Double
+    @Binding var windSpeedAvgLast2Min:Double
     @Binding var isConnected:Bool
     @Binding var connStatus:String
     @Binding var networkLocked:Bool
+    @State private var showAlert = false
     @AppStorage("stationUUID") var stationUUID = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
@@ -26,7 +28,11 @@ struct ContentView: View {
                     Circle()
                         .frame(width: 5,height: 5)
                         .foregroundColor(.gray)
-                } else{
+                } else {
+                    if (windSpeedAvgLast2Min>0){
+                        Image(systemName: "wind")
+                        Text("\(windSpeedAvgLast2Min, specifier: "%.1f") Km/h ")
+                    }
                     if (rainRate==0){
                         Image(systemName: "cloud.sun")
                     }
@@ -41,6 +47,7 @@ struct ContentView: View {
             }
             Text("\(connStatus)")
             Text(connOnStartup ? "Autoconnect":"No autoconnect")
+            Text("Station UUID: \(stationUUID)")
             TextField("Station UUID", text: $stationUUID)
             TextField("Station Api Key", text: $stationApiKey)
             TextField("Station Api Secret", text: $stationApiSecret)
@@ -48,7 +55,7 @@ struct ContentView: View {
                 if (!isConnected && !networkLocked) {
                     networkLocked=true
                     Task.init{
-                        (externalTemp,rainRate,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
+                        (externalTemp,rainRate,windSpeedAvgLast2Min,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                     }
                     networkLocked=false
                 }
@@ -66,14 +73,17 @@ struct ContentView: View {
     }
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), rainRate: .constant(0),isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
+    ContentView(externalTemp: .constant(0), rainRate: .constant(0),windSpeedAvgLast2Min: .constant(1), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+    ContentView(externalTemp: .constant(15), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0),isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), rainRate: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
+    ContentView(externalTemp: .constant(16), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), rainRate: .constant(20), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
+    ContentView(externalTemp: .constant(17), rainRate: .constant(20), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
+}
+#Preview {
+    ContentView(externalTemp: .constant(17), rainRate: .constant(20), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
 }

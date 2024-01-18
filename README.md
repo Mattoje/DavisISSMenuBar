@@ -1,5 +1,5 @@
 # DavisISSMenuBar
- A swiftUI MenuBar app to show Temp and Rain from an owned Davis Vantage Pro 2 Wireless using Weatherlink v2 API
+ A swiftUI MenuBar app to show Temp, Rain and Average wind speed (over last 2 minutes) from an owned Davis Vantage Pro 2 Wireless using Weatherlink v2 API
 
 # BIG FAT WARNING:
 **this thing is only an exercise in learning swift/swiftUI so use it at your own risk!!**

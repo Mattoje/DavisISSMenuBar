@@ -31,7 +31,7 @@ func getDataFromMyWeatherlink(_ stationUUID: String,_ stationApiKey:String,_ sta
         return (Data("Unknown Error".utf8),false)
     }
 }
-func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,rainRate: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){
+func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,rainRate: Double,windAvg2Min: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){
     if (stationUUID != "" && stationApiKey != "" && stationApiSecret != "" ) {
         let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationUUID,stationApiKey,stationApiSecret)
         if cstatus{
@@ -42,28 +42,34 @@ func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret
                         formatter.dateStyle = .medium
                         formatter.timeStyle = .short
                         if let rainRate = tempSensor.data[0].rain_rate_last_mm{
-                            return ((temp - 32) * 5/9,rainRate,true,true,"Connected: "+formatter.string(from: Date()))
+                            if let windAvg2Min=tempSensor.data[0].wind_speed_avg_last_2_min {
+                                
+                                return ((temp - 32) * 5/9,rainRate,(windAvg2Min*1.60934),true,true,"Connected: "+formatter.string(from: Date()))
+                            }
+                            else {
+                                return (-235,0,-1,false,false,"Wind Sensor Malfunction")
+                            }
                         }
                         else {
-                            return (-235,0,false,false,"Rain Sensor Malfunction")
+                            return (-235,0,-1,false,false,"Rain Sensor Malfunction")
                         }
                     }
                     else {
-                        return (-235,0,false,false,"Temp Sensor Malfunction")
+                        return (-235,0,-1,false,false,"Temp Sensor Malfunction")
                     }
                 }
                 else {
-                    return (-235,0,false,false,"No Sensors Detected")
+                    return (-235,0,-1,false,false,"No Sensors Detected")
                 }
             }
             else {
-                return (-235,0,false,false,"Json Decoding Error")
+                return (-235,0,-1,false,false,"Json Decoding Error")
             }
         } else {
-            return (-235,0,false,false,"Json Decoding Error unknown")
+            return (-235,0,-1,false,false,"Json Decoding Error unknown")
         }
     }
     else {
-        return (-235,0,false,false,"Fill all the required fields")
+        return (-235,0,-1,false,false,"Fill all the required fields")
     }
 }
