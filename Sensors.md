@@ -41,6 +41,7 @@
 |tx\_kilobytes|long|1000 bytes|Total Bytes sent on network interface|
 |wifi\_rssi|integer|decibel-milliwatts|WiFi Signal Strength|
 
+
 # Barometer: sensor type 242
 |**Field Name**|**Data Type**|**Units**|
 | :- | :- | :- |
@@ -49,6 +50,7 @@
 |bar_sea_level |   float |   inches of mercury|    
 |bar_trend |   float |   inches of mercury|    
 |ts |   integer | Unix timestamp of the data record|
+
 
 # Inside Temp and Hum: Sensor Type 365
 |**Field Name**|**Data Type**|**Units**|**Description**|
@@ -61,76 +63,98 @@
 |wbgt_in  |  float  |  degrees Fahrenheit |   Most recent inside wet bulb globe temperature reading|
 |wet_bulb_in  |  float  |  degrees Fahrenheit |   Most recent inside wet buld reading|
 
+
 # Vantage Pro2 Wireless: Sensor Type 43
 
-
-|**Field Name**|**Data Type**|**Units**|
-| :- | :- | :- |
-| bar | float | inches of mercury |
-| dew_point | float | degrees Fahrenheit |
-| et_day | float | inches |
-| et_month | float | inches |
-| et_year | float | inches |
-| forecast_desc | string | forecast messages if available |
-| forecast_rule | integer |  |
-| heat_index | float | degrees Fahrenheit |
-| hum_extra_1 | integer | percent relative humidity |
-| hum_extra_2 | integer | percent relative humidity |
-| hum_extra_3 | integer | percent relative humidity |
-| hum_extra_4 | integer | percent relative humidity |
-| hum_extra_5 | integer | percent relative humidity |
-| hum_extra_6 | integer | percent relative humidity |
-| hum_extra_7 | integer | percent relative humidity |
-| hum_in | integer | percent relative humidity |
-| hum_out | integer | percent relative humidity |
-| moist_soil_1 | integer | centibars |
-| moist_soil_2 | integer | centibars |
-| moist_soil_3 | integer | centibars |
-| moist_soil_4 | integer | centibars |
-| rain_day_clicks | integer | clicks for the day |
-| rain_day_in | float | inches for the day |
-| rain_day_mm | float | millimeters for the day |
-| rain_month_clicks | integer | clicks for the month |
-| rain_month_in | float | inches for the month |
-| rain_month_mm | float | millimeters for the month |
-| rain_rate_clicks | integer | clicks per hour |
-| rain_rate_in | float | inches per hour |
-| rain_rate_mm | float | mm per hour |
-| rain_storm_clicks | integer | clicks |
-| rain_storm_in | float | inches |
-| rain_storm_mm | float | millimeters |
-| rain_storm_start_date | integer | seconds |
-| rain_year_clicks | integer | clicks for the year |
-| rain_year_in | float | inches for the year |
-| rain_year_mm | float | millimeters for the year |
-| solar_rad | integer | watts per square meter |
-| temp_extra_1 | integer | degrees Fahrenheit |
-| temp_extra_2 | integer | degrees Fahrenheit |
-| temp_extra_3 | integer | degrees Fahrenheit |
-| temp_extra_4 | integer | degrees Fahrenheit |
-| temp_extra_5 | integer | degrees Fahrenheit |
-| temp_extra_6 | integer | degrees Fahrenheit |
-| temp_extra_7 | integer | degrees Fahrenheit |
-| temp_in | float | degrees Fahrenheit |
-| temp_leaf_1 | integer | degrees Fahrenheit |
-| temp_leaf_2 | integer | degrees Fahrenheit |
-| temp_leaf_3 | integer | degrees Fahrenheit |
-| temp_leaf_4 | integer | degrees Fahrenheit |
-| temp_out | float | degrees Fahrenheit |
-| temp_soil_1 | integer | degrees Fahrenheit |
-| temp_soil_2 | integer | degrees Fahrenheit |
-| temp_soil_3 | integer | degrees Fahrenheit |
-| temp_soil_4 | integer | degrees Fahrenheit |
-| uv | integer | ultraviolet index |
-| wet_leaf_1 | integer | wetness scale from 0 to 15 |
-| wet_leaf_2 | integer | wetness scale from 0 to 15 |
-| wet_leaf_3 | integer | wetness scale from 0 to 15 |
-| wet_leaf_4 | integer | wetness scale from 0 to 15 |
-| wind_chill | float | degrees Fahrenheit |
-| wind_dir | integer | degrees of compass |
-| wind_gust_10_min | integer | miles per hour |
-| wind_speed | integer | miles per hour |
-| wind_speed_10_min_avg | integer | miles per hour |
-|ts |   integer | Unix timestamp of the data record|
-|tx_id | integer | the transmitter ID that the outdoor integrated sensor suite is broadcasting on|
-|tz_offset | long | offset in seconds from UTC based on the selected timezone for the station|
+| cdd_day | float | cooling degree days in degrees Fahrenheit, to convert to an equivalent Celsius value use C = F x 5 / 9 | |
+| crc_errors_day | integer |  | Number of data packets containing CRC errors over the local day unless manually reset by user, updates every minute|
+| dew_point | float | degrees Fahrenheit | Most recent derived dew point|
+| et_day | float | inches | Sum of evapotranspiration since local midnight, only calculated hourly|
+| et_month | float | inches | Sum of evapotranspiration since local midnight on the first of the month, only calculated hourly|
+| et_year | float | inches | Sum of evapotranspiration since local midnight on the first of the month where the month is the user's selected month for the start of their rain year, only calculated hourly|
+| freq_error_current | integer |  | Current radio frequency error of the radio packets received, updates every packet|
+| freq_error_total | integer |  | Cumulative radio frequency error of the last packet received, updates every packet|
+| freq_index | integer |  | Frequency Index of Last Packet Received, updates every packet|
+| hdd_day | float | heating degree days in degrees Fahrenheit, to convert to an equivalent Celsius value use C = F x 5 / 9 | |
+| heat_index | float | degrees Fahrenheit | Most recent derived heat index|
+| hum | float | percent relative humidity | Most recent humidity reading|
+| last_packet_received_timestamp | long | TODO | Unix timestamp of last DavisTalk packet that was received. Null if no packets have been received since this transmitter was configured or set|
+| packets_missed_day | integer |  | Total number of packets that are missed for any reason over the local day unless manually reset by user, updates every minute|
+| packets_missed_streak | integer |  | Current number of missed packets in a row that are missed for any reason, can be reset by user at any time, updates every minute|
+| packets_missed_streak_hi_day | integer |  | Longest streak of consecutive packets received over the archive interval|
+| packets_received_day | integer |  | Total number of received packets over the local day unless manually reset by user, updates every packet|
+| packets_received_streak | integer |  | Current number of packets received in a row, updates every minute|
+| packets_received_streak_hi_day | integer |  | Longest Streak of Packets Received in a row over the local day unless manually reset by user, updates every minute|
+| rain_rate_hi_clicks | integer | clicks | Highest rain rate over the last 1 minute|
+| rain_rate_hi_in | float | inches | Highest rain rate over the last 1 minute|
+| rain_rate_hi_last_15_min_clicks | integer | clicks | Highest rain rate over the last 15 minutes|
+| rain_rate_hi_last_15_min_in | float | inches | Highest rain rate over the last 15 minutes|
+| rain_rate_hi_last_15_min_mm | float | millimeters | Highest rain rate over the last 15 minutes|
+| rain_rate_hi_mm | float | millimeters | Highest rain rate over the last 1 minute|
+| rain_rate_last_clicks | integer | clicks | Most recent rain rate|
+| rain_rate_last_in | float | inches | Most recent rain rate|
+| rain_rate_last_mm | float | millimeters | Most recent rain rate|
+| rain_size | integer | 1 = 0.01 inch; 2 = 0.2 mm; 3 = 0.1 mm; 4 = 0.001 inch | Rain collector size|
+| rain_storm_current_clicks | integer | clicks | Total rain in the current storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_current_in | float | inches | Total rain in the current storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_current_mm | float | millimeters | Total rain in the current storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_current_start_at | long | seconds | Unix timestamp of the start of the current storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_last_clicks | integer | clicks | Total rain in the previous storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_last_end_at | long | seconds | Unix timestamp of the end of the previous storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_last_in | float | inches | Total rain in the previous storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_last_mm | float | millimeters | Total rain in the previous storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rain_storm_last_start_at | long | seconds | Unix timestamp of the start of the previous storm (the first rain recorded after a period of 24 hours or more without rain is considered a new storm)|
+| rainfall_day_clicks | integer | clicks | Total rain since local midnight|
+| rainfall_day_in | float | inches | Total rain since local midnight|
+| rainfall_day_mm | float | millimeters | Total rain since local midnight|
+| rainfall_last_15_min_clicks | integer | clicks | Total rain over the last 15 minutes|
+| rainfall_last_15_min_in | float | inches | Total rain over the last 15 minutes|
+| rainfall_last_15_min_mm | float | millimeters | Total rain over the last 15 minutes|
+| rainfall_last_24_hr_clicks | integer | clicks | Total rain over the last 24 hours|
+| rainfall_last_24_hr_in | float | inches | Total rain over the last 24 hours|
+| rainfall_last_24_hr_mm | float | millimeters | Total rain over the last 24 hours|
+| rainfall_last_60_min_clicks | integer | clicks | Total rain over the last 60 minutes|
+| rainfall_last_60_min_in | float | inches | Total rain over the last 60 minutes|
+| rainfall_last_60_min_mm | float | millimeters | Total rain over the last 60 minutes|
+| rainfall_month_clicks | integer | clicks | Total rain since local midnight on the first of the month|
+| rainfall_month_in | float | inches | Total rain since local midnight on the first of the month|
+| rainfall_month_mm | float | millimeters | Total rain since local midnight on the first of the month|
+| rainfall_year_clicks | integer | clicks | Total rain since local midnight on the first of the month where the month is the user's selected month for the start of their rain year|
+| rainfall_year_in | float | inches | Total rain since local midnight on the first of the month where the month is the user's selected month for the start of their rain year|
+| rainfall_year_mm | float | millimeters | Total rain since local midnight on the first of the month where the month is the user's selected month for the start of their rain year|
+| reception_day | integer | percent | Percentage of packets received versus total possible over the local day once synced unless manually reset by user, updates every packet (null when not yet synced)|
+| resyncs_day | integer |  | Total number of resyncs since local midnight unless manually reset by user. The console will attempt to resynchronize with the station after 20 consecutive bad packets, updates every minute|
+| rssi_last | integer | decibel-milliwatts | DavisTalk Received Signal Strength Indication (RSSI) of last packet received, updates every packet|
+| rx_state | integer |  | Configured Receiver State, updates every minute <br />0 = Synced & Tracking OK.<br />1 = Synced (missing less than 20 DavisTalk packets in a row). <br />2 = Scanning (after missing 20 DavisTalk packets in a row).<br /> State at end of interval.|
+| solar_energy_day | double | langleys | Daily accumulation of solar energy since local midnight|
+| solar_panel_volt | float | volts | Current transmitter solar panel voltage|
+| solar_rad | integer | watts per square meter | Most recent solar radiation reading|
+| spars_rpm | integer | RPM | Current SPARS RPM|
+| spars_volt | float | volts | Current SPARS battery voltage|
+| supercap_volt | float | volts | Current transmitter super capacitor voltage|
+| temp | float | degrees Fahrenheit | Most recent temperature reading|
+| thsw_index | float | degrees Fahrenheit | Most recent derived temperature, humidity, solar, wind index|
+| thw_index | float | degrees Fahrenheit | Most recent derived temperature, humidity, wind index|
+| trans_battery_flag | integer |  | 0 = battery OK. 1 = battery low.|
+| trans_battery_volt | float | volts | Current transmitter battery voltage|
+| ts |   integer | Unix timestamp of the data record|
+| tx_id | integer | the transmitter ID that the outdoor integrated sensor suite is broadcasting on|
+| tz_offset | long | offset in seconds from UTC based on the selected timezone for the station|^
+| uv_dose_day | double | minimum erythemal dose | Total UV Dose since local midnight or since last user reset|
+| uv_index | float | ultraviolet index | Most recent UV index|
+| wbgt | float | degrees Fahrenheit | Most recent derived wet bulb globe temperature|
+| wet_bulb | float | degrees Fahrenheit | Most recent derived wet bulb|
+| wind_chill | float | degrees Fahrenheit | Most recent derived wind chill|
+| wind_dir_at_hi_speed_last_10_min | integer | degrees | Direction of maximum wind speed over last 10 minutes|
+| wind_dir_at_hi_speed_last_2_min | integer | degrees | Direction of maximum wind speed over last 2 minutes|
+| wind_dir_last | integer | degrees | Most recent wind direction value|
+| wind_dir_scalar_avg_last_10_min | integer | degrees | Scalar average wind direction over last 10 minutes|
+| wind_dir_scalar_avg_last_1_min | integer | degrees | Scalar average wind direction over last 1 minute|
+| wind_dir_scalar_avg_last_2_min | integer | degrees | Scalar average wind direction over last 2 minutes|
+| wind_run_day | double | miles | Daily accumulation of wind run since local midnight|
+| wind_speed_avg_last_10_min | float | miles per hour | Average wind speed over last 10 minutes|
+| wind_speed_avg_last_1_min | float | miles per hour | Average wind speed over last 1 minute|
+| wind_speed_avg_last_2_min | float | miles per hour | Average wind speed over last 2 minutes|
+| wind_speed_hi_last_10_min | float | miles per hour | Maximum wind speed over last 10 minutes|
+| wind_speed_hi_last_2_min | float | miles per hour | Maximum wind speed over last 2 minutes|
+| wind_speed_last | float | miles per hour | Most recent wind speed value|
