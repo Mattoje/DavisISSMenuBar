@@ -140,7 +140,7 @@
 | trans_battery_volt | float | volts | Current transmitter battery voltage|
 | ts |   integer | Unix timestamp of the data record|
 | tx_id | integer | the transmitter ID that the outdoor integrated sensor suite is broadcasting on|
-| tz_offset | long | offset in seconds from UTC based on the selected timezone for the station|^
+| tz_offset | long | offset in seconds from UTC based on the selected timezone for the station|
 | uv_dose_day | double | minimum erythemal dose | Total UV Dose since local midnight or since last user reset|
 | uv_index | float | ultraviolet index | Most recent UV index|
 | wbgt | float | degrees Fahrenheit | Most recent derived wet bulb globe temperature|
