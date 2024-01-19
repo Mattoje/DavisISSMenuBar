@@ -65,7 +65,8 @@
 
 
 # Vantage Pro2 Wireless: Sensor Type 43
-
+|**Field Name**|**Data Type**|**Units**|**Description**|
+| :- | :- | :- | :- |
 | cdd_day | float | cooling degree days in degrees Fahrenheit, to convert to an equivalent Celsius value use C = F x 5 / 9 | |
 | crc_errors_day | integer |  | Number of data packets containing CRC errors over the local day unless manually reset by user, updates every minute|
 | dew_point | float | degrees Fahrenheit | Most recent derived dew point|
