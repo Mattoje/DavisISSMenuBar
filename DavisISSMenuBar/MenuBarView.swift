@@ -21,20 +21,18 @@ struct MenuBarView: View {
     @Binding var networkLocked:Bool
     var body: some View {
         HStack(alignment: .bottom){
-            ZStack(alignment: .bottomTrailing){
-                if isConnected==true{
-                    
-                    Text("\(externalTemp, specifier: "%.1f")°")
-                    Divider()
-                    if (rainRate>0){
-                        Image(systemName: "cloud.drizzle")
-                    }
-                    if (windSpeedAvgLast2Min>0){
-                        Image(systemName: "wind")
-                    }
-                } else{
-                    Image(systemName: "thermometer.medium.slash").resizable()
+            if isConnected==true{
+                
+                Text("\(externalTemp, specifier: "%.1f")°")
+                Divider()
+                if (rainRate>0){
+                    Image(systemName: "cloud.drizzle")
                 }
+                if (windSpeedAvgLast2Min>0){
+                    Image(systemName: "wind")
+                }
+            } else{
+                Image(systemName: "thermometer.medium.slash").resizable()
             }
             
             

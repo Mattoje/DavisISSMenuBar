@@ -21,31 +21,35 @@ struct ContentView: View {
     @AppStorage("connOnStartup") var connOnStartup = false
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 
                 if (!isConnected){
                     Image(systemName: "thermometer.medium.slash")
-                    Circle()
-                        .frame(width: 5,height: 5)
-                        .foregroundColor(.gray)
                 } else {
                     if (windSpeedAvgLast2Min>0){
-                        Image(systemName: "wind")
-                        Text("\(windSpeedAvgLast2Min, specifier: "%.1f") Km/h ")
+                        Text("Wind Speed: \(windSpeedAvgLast2Min, specifier: "%.1f") Km/h ")
                     }
                     if (rainRate==0){
                         Image(systemName: "cloud.sun")
                     }
                     else {
-                        Image(systemName: "cloud.drizzle")
-                        Text("\(rainRate, specifier: "%.1f") mm ")
+                        Text("Rain Rate: \(rainRate, specifier: "%.1f") mm ")
                     }
-                    Circle()
-                        .frame(width: 5,height: 5)
-                        .foregroundColor(networkLocked ?.orange : .green)
                 }
             }
-            Text("\(connStatus)")
+            
+            HStack{
+                Text("\(connStatus)")
+                if (isConnected){
+                Circle()
+                    .frame(width: 5,height: 5)
+                    .foregroundColor(networkLocked ?.orange : .green)
+                } else {
+                    Circle()
+                        .frame(width: 5,height: 5)
+                        .foregroundColor(.gray)
+                }
+            }
             Text(connOnStartup ? "Autoconnect":"No autoconnect")
             Text("Station UUID: \(stationUUID)")
             TextField("Station UUID", text: $stationUUID)

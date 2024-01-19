@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%.1f Km/h " : {
-
-    },
-    "%.1f mm " : {
-
-    },
     "%.1f°" : {
 
     },
@@ -28,6 +22,9 @@
     "Quit" : {
 
     },
+    "Rain Rate: %.1f mm " : {
+
+    },
     "Station Api Key" : {
 
     },
@@ -38,6 +35,9 @@
 
     },
     "Station UUID: %@" : {
+
+    },
+    "Wind Speed: %.1f Km/h " : {
 
     }
   },
