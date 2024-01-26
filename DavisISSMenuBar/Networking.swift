@@ -35,40 +35,34 @@ func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret
     if (stationUUID != "" && stationApiKey != "" && stationApiSecret != "" ) {
         let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationUUID,stationApiKey,stationApiSecret)
         if cstatus{
-            if let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) {
-                if let tempSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) {
-                    if let temp  = tempSensor.data[0].temp {
-                        let formatter = DateFormatter()
-                        formatter.dateStyle = .medium
-                        formatter.timeStyle = .short
-                        if let rainRate = tempSensor.data[0].rain_rate_last_mm{
-                            if let windAvg2Min=tempSensor.data[0].wind_speed_avg_last_2_min {
-                                
-                                return ((temp - 32) * 5/9,rainRate,(windAvg2Min*1.60934),true,true,"Connected: "+formatter.string(from: Date()))
-                            }
-                            else {
-                                return (-235,0,-1,false,false,"Wind Sensor Malfunction")
-                            }
-                        }
-                        else {
-                            return (-235,0,-1,false,false,"Rain Sensor Malfunction")
-                        }
-                    }
-                    else {
-                        return (-235,0,-1,false,false,"Temp Sensor Malfunction")
-                    }
-                }
-                else {
-                    return (-235,0,-1,false,false,"No Sensors Detected")
-                }
-            }
+            guard let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata)
             else {
                 return (-235,0,-1,false,false,"Json Decoding Error")
             }
-        } else {
+            guard let workSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid})
+            else{
+                return (-235,0,-1,false,false,"No Sensors Detected")
+            }
+            guard let temp  = workSensor.data[0].temp
+            else {
+                return (-235,0,-1,false,false,"Temp Sensor Malfunction")
+            }
+            guard let rainRate = workSensor.data[0].rain_rate_last_mm
+            else {
+                return (-235,0,-1,false,false,"Rain Sensor Malfunction")
+            }
+            guard let windAvg2Min=workSensor.data[0].wind_speed_avg_last_2_min
+            else {
+                return (-235,0,-1,false,false,"Wind Sensor Malfunction")
+            }
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            return ((temp - 32) * 5/9,rainRate,(windAvg2Min*1.60934),true,true,"Connected: "+formatter.string(from: Date()))
+        } else { // if cstatus
             return (-235,0,-1,false,false,String(decoding: jsondata, as: UTF8.self))
         }
-    }
+    }// if stationUUID
     else {
         return (-235,0,-1,false,false,"Fill all the required fields")
     }
