@@ -66,7 +66,7 @@ func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret
                 return (-235,0,-1,false,false,"Json Decoding Error")
             }
         } else {
-            return (-235,0,-1,false,false,"Json Decoding Error unknown")
+            return (-235,0,-1,false,false,String(decoding: jsondata, as: UTF8.self))
         }
     }
     else {
