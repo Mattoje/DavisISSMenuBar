@@ -16,13 +16,16 @@ func getDataFromMyWeatherlink(_ stationUUID: String,_ stationApiKey:String,_ sta
         guard let response = response as? HTTPURLResponse else {
             return (Data("Guard response failed".utf8),false)
         }
-        if response.statusCode==401 {
-            return (Data("Error 401".utf8),false)
+        switch response.statusCode {
+            case 200:
+                return (data,true)
+            case 401:
+                return (Data("Error 401: wrong credentials".utf8),false)
+            case 404:
+                return (Data("Error 404: station not found ".utf8),false)
+            default:
+                return (Data("Error \(response.statusCode): Unknown Error".utf8),false)
         }
-        if response.statusCode==404 {
-            return (Data("Error 404".utf8),false)
-        }
-        return (data,true)
     }
     catch {
         if let error = error as? URLError {
