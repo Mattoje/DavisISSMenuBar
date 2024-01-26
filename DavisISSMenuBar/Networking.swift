@@ -34,25 +34,20 @@ func getDataFromMyWeatherlink(_ stationUUID: String,_ stationApiKey:String,_ sta
 func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,rainRate: Double,windAvg2Min: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){
     if (stationUUID != "" && stationApiKey != "" && stationApiSecret != "" ) {
         let (jsondata,cstatus) = await getDataFromMyWeatherlink(stationUUID,stationApiKey,stationApiSecret)
-        if cstatus{
-            guard let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata)
-            else {
+        if cstatus {
+            guard let sensorsList = try? JSONDecoder().decode(WeatherLinkResults.self, from: jsondata) else {
                 return (-235,0,-1,false,false,"Json Decoding Error")
             }
-            guard let workSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid})
-            else{
+            guard let workSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) else {
                 return (-235,0,-1,false,false,"No Sensors Detected")
             }
-            guard let temp  = workSensor.data[0].temp
-            else {
+            guard let temp  = workSensor.data[0].temp else {
                 return (-235,0,-1,false,false,"Temp Sensor Malfunction")
             }
-            guard let rainRate = workSensor.data[0].rain_rate_last_mm
-            else {
+            guard let rainRate = workSensor.data[0].rain_rate_last_mm else {
                 return (-235,0,-1,false,false,"Rain Sensor Malfunction")
             }
-            guard let windAvg2Min=workSensor.data[0].wind_speed_avg_last_2_min
-            else {
+            guard let windAvg2Min=workSensor.data[0].wind_speed_avg_last_2_min else {
                 return (-235,0,-1,false,false,"Wind Sensor Malfunction")
             }
             let formatter = DateFormatter()
