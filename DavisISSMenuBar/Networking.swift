@@ -8,7 +8,9 @@ import Foundation
 
 
 func getDataFromMyWeatherlink(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async -> (responseJson: Data,status: Bool) {
-    let url = URL(string: "https://api.weatherlink.com/v2/current/\(stationUUID)?api-key=\(stationApiKey)")!
+    guard let url = URL(string: "https://api.weatherlink.com/v2/current/\(stationUUID)?api-key=\(stationApiKey)") else {
+        return (Data("Guard url failed".utf8),false)
+    }
     var request = URLRequest(url: url)
     request.setValue(stationApiSecret,forHTTPHeaderField:"X-Api-Secret")
     do {
