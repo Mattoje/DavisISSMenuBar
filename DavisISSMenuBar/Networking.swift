@@ -33,7 +33,7 @@ func getDataFromMyWeatherlink(_ stationUUID: String,_ stationApiKey:String,_ sta
         if let error = error as? URLError {
             return(Data(error.localizedDescription.utf8),false)
         }
-        return (Data("Unknown Error".utf8),false)
+        return (Data("Unknown Network Error".utf8),false)
     }
 }
 func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret:String) async ->(celsiusTemp: Double,rainRate: Double,windAvg2Min: Double,isConnected:Bool,connOnStartup: Bool,connStatus:String){

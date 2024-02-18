@@ -20,17 +20,17 @@ struct MenuBarView: View {
     @Binding var connStatus:String
     @Binding var networkLocked:Bool
     var body: some View {
-        HStack(alignment: .bottom){
+        HStack(alignment: .top){
             if isConnected==true{
-                
-                Text("\(externalTemp, specifier: "%.1f")°")
-                Divider()
                 if (rainRate>0){
-                    Image(systemName: "cloud.drizzle")
+                    windSpeedAvgLast2Min>0 ? Image("wind_rain"):Image(systemName: "cloud.rain")
                 }
-                if (windSpeedAvgLast2Min>0){
-                    Image(systemName: "wind")
+                else {
+                    if (windSpeedAvgLast2Min>0){
+                        Image(systemName: "wind")
+                    }
                 }
+                Text("\(externalTemp, specifier: "%.1f")°")
             } else{
                 Image(systemName: "thermometer.medium.slash").resizable()
             }
