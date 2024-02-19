@@ -15,6 +15,7 @@
 </p>
 
 # Conditions:
+* International System of Units only! No other abominable system of measurement.
 * You own the station under your WeatherLink account.
 * The station must be a Davis Vantage Pro 2  Wireless
 * You need to know your own stationUUID, stationApiKey and stationApiSecret
