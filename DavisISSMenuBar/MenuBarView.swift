@@ -30,7 +30,7 @@ struct MenuBarView: View {
                         Image(systemName: "wind")
                     }
                 }
-                Text("\(externalTemp, specifier: "%.1f")°")
+                Text("\(externalTemp, specifier: "%.1f") °C")
             } else{
                 Image(systemName: "thermometer.medium.slash").resizable()
             }

@@ -46,13 +46,13 @@ func startupconn(_ stationUUID: String,_ stationApiKey:String,_ stationApiSecret
             guard let workSensor = sensorsList.sensors.first(where: {$0.sensor_type == myISSid}) else {
                 return (-235,0,-1,false,false,"No Sensors Detected")
             }
-            guard let temp  = workSensor.data[0].temp else {
+            guard let temp = workSensor.data[0].temp else {
                 return (-235,0,-1,false,false,"Temp Sensor Malfunction")
             }
             guard let rainRate = workSensor.data[0].rain_rate_last_mm else {
                 return (-235,0,-1,false,false,"Rain Sensor Malfunction")
             }
-            guard let windAvg2Min=workSensor.data[0].wind_speed_avg_last_2_min else {
+            guard let windAvg2Min = workSensor.data[0].wind_speed_avg_last_2_min else {
                 return (-235,0,-1,false,false,"Wind Sensor Malfunction")
             }
             let formatter = DateFormatter()
