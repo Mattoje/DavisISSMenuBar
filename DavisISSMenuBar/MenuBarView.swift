@@ -23,7 +23,7 @@ struct MenuBarView: View {
         HStack(alignment: .top){
             if isConnected==true{
                 if (rainRate>0){
-                    windSpeedAvgLast2Min>0 ? Image("wind_rain"):Image(systemName: "cloud.rain")
+                    windSpeedAvgLast2Min>0 ? Image("martin.noun.wind.rain"):Image(systemName: "cloud.rain")
                 }
                 else {
                     if (windSpeedAvgLast2Min>0){
