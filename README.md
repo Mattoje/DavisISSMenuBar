@@ -46,5 +46,5 @@ Both changes are live now in the WeatherLink v2 API. If you have any questions o
 * https://app.quicktype.io for (almost) avoiding me the hassle of manually parse JSON into swift struct
 * https://jsonlint.com
 * https://markdownlivepreview.com
-* https://thenounproject.com/martin25044/ for the wind rain icon (https://creativecommons.org/licenses/by/3.0/.)
+* Wind+Rain icon https://thenounproject.com/martin25044/
 * https://www.figma.com/community/plugin/1265484574589944515/sf-symbols-optimizer 
