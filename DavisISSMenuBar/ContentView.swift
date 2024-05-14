@@ -14,7 +14,7 @@ struct ContentView: View {
     @Binding var isConnected:Bool
     @Binding var connStatus:String
     @Binding var networkLocked:Bool
-    @State private var showAlert = false
+    @State private var showDisclosure = false
     @AppStorage("stationUUID") var stationUUID = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
     @AppStorage("stationApiSecret") var stationApiSecret = ""
@@ -52,9 +52,11 @@ struct ContentView: View {
             }
             Text(connOnStartup ? "Autoconnect":"No autoconnect")
             Text("Station UUID: \(stationUUID)")
-            TextField("Station UUID", text: $stationUUID)
-            TextField("Station Api Key", text: $stationApiKey)
-            TextField("Station Api Secret", text: $stationApiSecret)
+            DisclosureGroup("Credentials", isExpanded: $showDisclosure) {
+                TextField("Station UUID", text: $stationUUID)
+                TextField("Station Api Key", text: $stationApiKey)
+                TextField("Station Api Secret", text: $stationApiSecret)
+            }
             Button(isConnected ?  "Disconnect":"Connect"){
                 if (!isConnected && !networkLocked) {
                     networkLocked=true

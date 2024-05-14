@@ -6,12 +6,12 @@
 
 # Build requirements
 <p align="left">
-    <img src="https://img.shields.io/badge/Xcode-15.2-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/Xcode-15.4-brightgreen.svg" />
 </p>
 
 # OS requirements
 <p align="left">
-    <img src="https://img.shields.io/badge/macOS-14.2-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/macOS-14.5-brightgreen.svg" />
 </p>
 
 # Conditions:
