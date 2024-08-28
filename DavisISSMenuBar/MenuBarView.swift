@@ -19,6 +19,9 @@ struct MenuBarView: View {
     @Binding var isConnected:Bool
     @Binding var connStatus:String
     @Binding var networkLocked:Bool
+    @Binding var consoleOsVersion:String
+    @Binding var consoleRadioVersion:String
+    @Binding var consoleSwVersion:String
     var body: some View {
         HStack(alignment: .top){
             if isConnected==true{
@@ -41,7 +44,7 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,rainRate,windSpeedAvgLast2Min,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
+                    (externalTemp,rainRate,windSpeedAvgLast2Min,consoleOsVersion,consoleRadioVersion,consoleSwVersion,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                 }
                 networkLocked=false
             }
@@ -50,7 +53,7 @@ struct MenuBarView: View {
             if (connOnStartup && !networkLocked){
                 networkLocked=true
                 Task.init{
-                    (externalTemp,rainRate,windSpeedAvgLast2Min,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
+                    (externalTemp,rainRate,windSpeedAvgLast2Min,consoleOsVersion,consoleRadioVersion,consoleSwVersion,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                 }
                 networkLocked=false
             }
@@ -59,17 +62,17 @@ struct MenuBarView: View {
 }
 
 #Preview {
-    MenuBarView(externalTemp: .constant(20), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0),isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true))
+    MenuBarView(externalTemp: .constant(20), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0),isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
 }
 #Preview {
-    MenuBarView(externalTemp: .constant(100), rainRate: .constant(1), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+    MenuBarView(externalTemp: .constant(100), rainRate: .constant(1), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
 }
 #Preview {
-    MenuBarView(externalTemp: .constant(100), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+    MenuBarView(externalTemp: .constant(100), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
 }
 #Preview {
-    MenuBarView(externalTemp: .constant(100), rainRate: .constant(1), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false))
+    MenuBarView(externalTemp: .constant(100), rainRate: .constant(1), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
 }
 #Preview {
-    MenuBarView(externalTemp: .constant(0), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false))
+    MenuBarView(externalTemp: .constant(0), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
 }

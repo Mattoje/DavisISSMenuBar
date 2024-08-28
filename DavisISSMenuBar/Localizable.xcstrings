@@ -13,6 +13,15 @@
     "Connect" : {
 
     },
+    "Console Os Version: %@" : {
+
+    },
+    "Console Radio Version: %@" : {
+
+    },
+    "Console Software Version: %@" : {
+
+    },
     "Credentials" : {
 
     },
@@ -37,7 +46,7 @@
     "Station UUID" : {
 
     },
-    "Station UUID: %@" : {
+    "Station UUID:" : {
 
     },
     "Wind Speed: %.1f Km/h " : {

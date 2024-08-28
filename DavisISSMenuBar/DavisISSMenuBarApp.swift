@@ -14,13 +14,16 @@ struct DavisISSMenuBarApp: App {
     @State var windSpeedAvgLast2Min:Double=0
     @State var isConnected: Bool=false
     @State var networkLocked=false
-    @State var connStatus:String="Disconnected"
+    @State var connStatus:String = "Disconnected"
+    @State var consoleOsVersion = "Unknown"
+    @State var consoleRadioVersion = "Unknown"
+    @State var consoleSwVersion = "Unknown"
     var body: some Scene {
         MenuBarExtra {
-            ContentView(externalTemp: $externalTemp,rainRate: $rainRate, windSpeedAvgLast2Min: $windSpeedAvgLast2Min,isConnected: $isConnected,connStatus:$connStatus,networkLocked:$networkLocked)
+            ContentView(externalTemp: $externalTemp,rainRate: $rainRate, windSpeedAvgLast2Min: $windSpeedAvgLast2Min,isConnected: $isConnected,connStatus:$connStatus,networkLocked:$networkLocked,consoleOsVersion:$consoleOsVersion,consoleRadioVersion:$consoleRadioVersion,consoleSwVersion:$consoleSwVersion)
         }
     label: {
-        MenuBarView(externalTemp: $externalTemp,rainRate: $rainRate,windSpeedAvgLast2Min: $windSpeedAvgLast2Min,isConnected: $isConnected,connStatus:$connStatus,networkLocked:$networkLocked)
+        MenuBarView(externalTemp: $externalTemp,rainRate: $rainRate,windSpeedAvgLast2Min: $windSpeedAvgLast2Min,isConnected: $isConnected,connStatus:$connStatus,networkLocked:$networkLocked,consoleOsVersion:$consoleOsVersion,consoleRadioVersion:$consoleRadioVersion,consoleSwVersion:$consoleSwVersion)
     }
     .menuBarExtraStyle(.window)
     }
