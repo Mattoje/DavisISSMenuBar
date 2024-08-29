@@ -44,9 +44,9 @@ struct ContentView: View {
             HStack{
                 Text("\(connStatus)")
                 if (isConnected){
-                Circle()
-                    .frame(width: 5,height: 5)
-                    .foregroundColor(networkLocked ?.orange : .green)
+                    Circle()
+                        .frame(width: 5,height: 5)
+                        .foregroundColor(networkLocked ?.orange : .green)
                 } else {
                     Circle()
                         .frame(width: 5,height: 5)
@@ -54,17 +54,19 @@ struct ContentView: View {
                 }
             }
             Text(connOnStartup ? "Autoconnect":"No autoconnect")
-            Text("Station UUID:")
-            Text(stationUUID).lineLimit(1)
-                .truncationMode(.tail)
-            Spacer()
-            Text("Console Software Version: \(consoleSwVersion)")
-            Text("Console Os Version: \(consoleOsVersion)")
-            Text("Console Radio Version: \(consoleRadioVersion)")
-            DisclosureGroup("Credentials", isExpanded: $showDisclosure) {
-                TextField("Station UUID", text: $stationUUID)
-                TextField("Station Api Key", text: $stationApiKey)
-                TextField("Station Api Secret", text: $stationApiSecret)
+            if (isConnected){
+                Text("Station UUID:")
+                Text(stationUUID).lineLimit(1)
+                    .truncationMode(.tail)
+                Spacer()
+                Text("Console Software Version: \(consoleSwVersion)")
+                Text("Console Os Version: \(consoleOsVersion)")
+                Text("Console Radio Version: \(consoleRadioVersion)")
+                DisclosureGroup("Credentials", isExpanded: $showDisclosure) {
+                    TextField("Station UUID", text: $stationUUID)
+                    TextField("Station Api Key", text: $stationApiKey)
+                    TextField("Station Api Secret", text: $stationApiSecret)
+                }
             }
             Button(isConnected ?  "Disconnect":"Connect"){
                 if (!isConnected && !networkLocked) {
