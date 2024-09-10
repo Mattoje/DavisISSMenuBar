@@ -16,7 +16,7 @@ struct ContentView: View {
     @Binding var networkLocked:Bool
     @Binding var consoleOsVersion:String
     @Binding var consoleRadioVersion:String
-    @Binding var consoleSwVersion:String
+    @Binding var consoleFwVersion:String
     @State private var showDisclosure = false
     @AppStorage("stationUUID") var stationUUID = ""
     @AppStorage("stationApiKey") var stationApiKey = ""
@@ -59,7 +59,7 @@ struct ContentView: View {
                 Text(stationUUID).lineLimit(1)
                     .truncationMode(.tail)
                 Spacer()
-                Text("Console Firmware: \(consoleSwVersion)")
+                Text("Console Firmware: \(consoleFwVersion)")
                 Text("Operating System: \(consoleOsVersion)")
                 Text("Radio Module: \(consoleRadioVersion)")
                 DisclosureGroup("Credentials", isExpanded: $showDisclosure) {
@@ -72,7 +72,7 @@ struct ContentView: View {
                 if (!isConnected && !networkLocked) {
                     networkLocked=true
                     Task.init{
-                        (externalTemp,rainRate,windSpeedAvgLast2Min,consoleOsVersion,consoleRadioVersion,consoleSwVersion,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
+                        (externalTemp,rainRate,windSpeedAvgLast2Min,consoleOsVersion,consoleRadioVersion,consoleFwVersion,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                     }
                     networkLocked=false
                 }
@@ -90,17 +90,17 @@ struct ContentView: View {
     }
 }
 #Preview {
-    ContentView(externalTemp: .constant(0), rainRate: .constant(0),windSpeedAvgLast2Min: .constant(1), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
+    ContentView(externalTemp: .constant(0), rainRate: .constant(0),windSpeedAvgLast2Min: .constant(1), isConnected: .constant(false), connStatus: .constant("Disconnected"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleFwVersion:.constant("12"))
 }
 #Preview {
-    ContentView(externalTemp: .constant(15), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0),isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
+    ContentView(externalTemp: .constant(15), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(0),isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(false),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleFwVersion:.constant("12"))
 }
 #Preview {
-    ContentView(externalTemp: .constant(16), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
+    ContentView(externalTemp: .constant(16), rainRate: .constant(0), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleFwVersion:.constant("12"))
 }
 #Preview {
-    ContentView(externalTemp: .constant(17), rainRate: .constant(20), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
+    ContentView(externalTemp: .constant(17), rainRate: .constant(20), windSpeedAvgLast2Min: .constant(0), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleFwVersion:.constant("12"))
 }
 #Preview {
-    ContentView(externalTemp: .constant(17), rainRate: .constant(20), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleSwVersion:.constant("12"))
+    ContentView(externalTemp: .constant(17), rainRate: .constant(20), windSpeedAvgLast2Min: .constant(1), isConnected: .constant(true), connStatus: .constant("Connected at time"),networkLocked:.constant(true),consoleOsVersion:.constant("10"),consoleRadioVersion:.constant("11"),consoleFwVersion:.constant("12"))
 }
