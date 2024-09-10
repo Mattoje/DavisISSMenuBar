@@ -59,9 +59,9 @@ struct ContentView: View {
                 Text(stationUUID).lineLimit(1)
                     .truncationMode(.tail)
                 Spacer()
-                Text("Console Software Version: \(consoleSwVersion)")
-                Text("Console Os Version: \(consoleOsVersion)")
-                Text("Console Radio Version: \(consoleRadioVersion)")
+                Text("Console Firmware: \(consoleSwVersion)")
+                Text("Operating System: \(consoleOsVersion)")
+                Text("Radio Module: \(consoleRadioVersion)")
                 DisclosureGroup("Credentials", isExpanded: $showDisclosure) {
                     TextField("Station UUID", text: $stationUUID)
                     TextField("Station Api Key", text: $stationApiKey)
@@ -72,7 +72,7 @@ struct ContentView: View {
                 if (!isConnected && !networkLocked) {
                     networkLocked=true
                     Task.init{
-                        (externalTemp,rainRate,windSpeedAvgLast2Min,consoleRadioVersion,consoleSwVersion,consoleOsVersion,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
+                        (externalTemp,rainRate,windSpeedAvgLast2Min,consoleOsVersion,consoleRadioVersion,consoleSwVersion,isConnected,connOnStartup,connStatus) = await startupconn(stationUUID,stationApiKey,stationApiSecret)
                     }
                     networkLocked=false
                 }

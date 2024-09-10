@@ -13,13 +13,7 @@
     "Connect" : {
 
     },
-    "Console Os Version: %@" : {
-
-    },
-    "Console Radio Version: %@" : {
-
-    },
-    "Console Software Version: %@" : {
+    "Console Firmware: %@" : {
 
     },
     "Credentials" : {
@@ -31,7 +25,13 @@
     "No autoconnect" : {
 
     },
+    "Operating System: %@" : {
+
+    },
     "Quit" : {
+
+    },
+    "Radio Module: %@" : {
 
     },
     "Rain Rate: %.1f mm " : {
